@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dashboard PNBP Pasca Produksi — PPN Ambon 2026</title>
+<style>
+:root{
+  --navy:#083b74; --navy2:#0c4f91; --blue:#0d8be6; --cyan:#35c1f1;
+  --green:#0d7a53; --green2:#1aa875; --orange:#f59d19; --red:#ef5a5a;
+  --ink:#18324a; --muted:#6a7f92; --card:#ffffff; --bg:#f3f8fc; --line:#dbe8f2;
+  --shadow:0 14px 35px rgba(14,65,105,.10); --radius:20px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#eaf5ff 0,#f7fbff 45%,#eef7fb 100%);color:var(--ink)}
+body.dark{--ink:#e7f0f8;--muted:#a8bacb;--card:#0d2134;--bg:#071523;--line:#1e3a52;--shadow:0 14px 35px rgba(0,0,0,.28);background:linear-gradient(180deg,#061929 0,#0b1d2d 100%)}body.dark .kpi:before{opacity:.15;mix-blend-mode:screen}body.dark .kpi:after{background:linear-gradient(90deg,var(--card) 0%,var(--card) 54%,color-mix(in srgb,var(--tone) 10%,var(--card)) 78%,color-mix(in srgb,var(--tone) 20%,var(--card)) 100%)}
+button,select{font:inherit}
+.shell{max-width:1480px;margin:auto;padding:22px}
+.hero{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(120deg,rgba(7,57,108,.95) 0%,rgba(11,92,168,.92) 55%,rgba(11,127,142,.88) 100%);color:#fff;padding:28px 30px;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero:before{width:310px;height:310px;right:-95px;top:-160px}.hero:after{width:230px;height:230px;right:140px;bottom:-150px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:center;position:relative;z-index:1}.hero-copy{max-width:900px}.hero-side{display:flex;flex-direction:column;gap:14px;align-items:stretch}.hero-media{position:relative;display:grid;align-items:end}.hero-photo,.hero-mini{position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,.24);box-shadow:0 18px 40px rgba(0,0,0,.22)}.hero-photo{background:rgba(255,255,255,.10)}.hero-photo img,.hero-mini img{width:100%;height:100%;display:block;object-fit:cover}.hero-photo img{aspect-ratio:4/3}.hero-tag{position:absolute;left:14px;bottom:14px;background:rgba(8,31,59,.65);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.04em}.hero-mini{position:absolute;right:-10px;bottom:-18px;width:165px;height:118px;background:rgba(255,255,255,.95)}.hero-mini .hero-tag{left:10px;bottom:10px;font-size:11px;padding:6px 10px}.visual-card{grid-column:span 12;padding:0;overflow:hidden}.visual-shell{display:grid;grid-template-columns:1.25fr .75fr;gap:0}.visual-main,.visual-side{position:relative;min-height:280px;background:#dce8f4}.visual-main img,.visual-side img{width:100%;height:100%;object-fit:cover;display:block}.visual-side{min-height:230px;border-bottom:1px solid var(--line)}.visual-caption{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;color:#fff}.visual-caption b{display:block;font-size:19px;line-height:1.15;text-shadow:0 3px 18px rgba(0,0,0,.35)}.visual-caption span{font-size:12px;opacity:.92}.visual-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,24,45,0) 20%,rgba(5,24,45,.72) 100%)}.visual-side-panel{display:grid;grid-template-rows:auto 1fr}.visual-note{padding:22px}.visual-note h3{margin:0 0 8px;font-size:22px}.visual-note p{margin:0;color:var(--muted);line-height:1.55}.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.pill{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:12px;font-weight:800;color:var(--ink)}
+.eyebrow{font-weight:800;letter-spacing:.12em;font-size:12px;text-transform:uppercase;opacity:.86}
+h1{font-size:clamp(28px,4vw,48px);line-height:1.02;margin:7px 0 12px;max-width:900px}.accent{color:#ffd83d}.sub{font-size:16px;opacity:.9;max-width:880px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.btn{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:700;backdrop-filter:blur(5px)}.btn:hover{background:rgba(255,255,255,.18)}
+.date-pill{display:inline-flex;gap:9px;align-items:center;background:#fff;color:#0b4c87;border-radius:12px;padding:8px 12px;font-weight:900;margin-top:10px}.brand-lockup{display:inline-flex;align-items:center;gap:12px;margin-bottom:10px;padding:8px 12px;border-radius:16px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)}.brand-logo{width:58px;height:58px;border-radius:14px;background:rgba(255,255,255,.95);display:grid;place-items:center;padding:8px;overflow:hidden}.brand-logo img{width:100%;height:100%;object-fit:contain}.brand-title strong{display:block;font-size:18px;letter-spacing:.03em}.brand-title span{display:block;font-size:12px;opacity:.86}.executive-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0 0}.exec-chip{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow)}.exec-chip .label{display:block;color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.exec-chip .value{display:block;color:var(--ink);font-size:24px;font-weight:900;line-height:1.1;margin-top:6px}.exec-chip .meta{display:block;color:var(--muted);font-size:12px;margin-top:4px}.card-watermark{position:relative;overflow:hidden}.card-watermark:before{content:"";position:absolute;inset:0;background-image:var(--watermark);background-size:cover;background-position:center;opacity:.09;filter:saturate(1.05)}.card-watermark:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.90),rgba(255,255,255,.92))}body.dark .card-watermark:after{background:linear-gradient(180deg,rgba(13,33,52,.92),rgba(13,33,52,.95))}.card-watermark>*{position:relative;z-index:1}.auto-slider{position:relative;height:100%;min-height:280px}.auto-slider .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}.auto-slider .slide.active{opacity:1}.slider-dots{position:absolute;right:16px;bottom:16px;display:flex;gap:8px;z-index:2}.slider-dots .dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;padding:0}.slider-dots .dot.active{background:#fff}.visual-main .visual-caption{z-index:2}.values-card{grid-column:span 12;display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:center}.values-art{background:linear-gradient(180deg,#fbfdff,#f3f8fc);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;place-items:center;min-height:220px}.values-art img{width:100%;height:auto;max-height:240px;object-fit:contain}.values-copy p{margin:8px 0 0;color:var(--muted);line-height:1.6}.values-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.value-item{padding:12px 14px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}.value-item b{display:block;font-size:16px;margin-bottom:4px}.value-item span{display:block;font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}.kpi{grid-column:span 3;min-height:136px;position:relative;overflow:hidden;isolation:isolate}.kpi:before{content:"";position:absolute;top:0;right:0;bottom:0;width:48%;background-image:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.25) 24%,rgba(255,255,255,.78) 100%),url("manise-core.webp");background-repeat:no-repeat;background-position:right center;background-size:cover;opacity:.22;mix-blend-mode:multiply;z-index:-2}.kpi:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--card) 0%,var(--card) 54%,color-mix(in srgb,var(--tone) 9%,var(--card)) 76%,color-mix(in srgb,var(--tone) 18%,var(--card)) 100%);z-index:-1}.kpi>*{position:relative;z-index:1}
+.kpi .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--tone) 14%, transparent);font-size:24px}.kpi .label{color:var(--muted);font-weight:700;font-size:13px;margin-top:13px}.kpi .value{font-size:29px;font-weight:900;line-height:1;margin-top:5px}.kpi .unit{font-size:13px;color:var(--muted);font-weight:700}.kpi .mini{font-size:12px;color:var(--muted);margin-top:7px}
+.finance{grid-column:span 7;display:grid;grid-template-columns:210px 1fr;gap:20px;align-items:center;position:relative;overflow:hidden}.progress-wrap{display:grid;place-items:center}.ring{width:190px;height:190px;border-radius:50%;background:conic-gradient(var(--green) 0 90.34%,#e6edf2 90.34% 100%);display:grid;place-items:center;position:relative}.ring:after{content:"";position:absolute;width:138px;height:138px;border-radius:50%;background:var(--card)}.ring-inner{z-index:1;text-align:center}.ring-inner b{font-size:39px;color:var(--green)}.ring-inner span{display:block;color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.finance h2,.section-title{margin:0 0 6px;font-size:21px}.money{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.money .box{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:13px}.money .box small{display:block;color:var(--muted);font-weight:700}.money .box strong{display:block;font-size:18px;margin-top:4px}.daily{grid-column:span 5;background:linear-gradient(145deg,#0b4a87,#0b6ec3);color:#fff;position:relative;overflow:hidden}.daily .big{font-size:32px;font-weight:900;margin:10px 0 6px}.daily .rows{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}.daily .mini-box{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:13px;padding:11px}.daily .mini-box b{display:block;font-size:17px}.daily .mini-box span{font-size:11px;opacity:.8}
+.chart-card{grid-column:span 6}.chart-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:8px}.chart-head .meta{color:var(--muted);font-size:12px}.chart-area{height:270px;position:relative}.chart-area svg{width:100%;height:100%;overflow:visible}.axis-label{font-size:10px;fill:var(--muted)}.bar{cursor:pointer;transition:.2s}.bar:hover{opacity:.72;transform:translateY(-2px)}.line-dot{cursor:pointer;transition:.2s}.line-dot:hover{r:6}
+.tooltip{position:fixed;z-index:50;pointer-events:none;background:#10283e;color:#fff;padding:9px 11px;border-radius:10px;font-size:12px;box-shadow:0 10px 25px rgba(0,0,0,.25);opacity:0;transform:translate(-50%,-110%);transition:opacity .12s;white-space:nowrap}
+.table-card{grid-column:span 12;padding:0;overflow:hidden}.table-top{padding:19px 20px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:880px}th,td{padding:12px 14px;border-top:1px solid var(--line);text-align:right;font-size:13px}th{background:color-mix(in srgb,var(--navy) 8%,var(--card));color:var(--ink);font-size:11px;letter-spacing:.04em;text-transform:uppercase;position:sticky;top:0}th:nth-child(1),td:nth-child(1){text-align:center}th:nth-child(2),td:nth-child(2){text-align:left}tbody tr:hover{background:color-mix(in srgb,var(--blue) 5%,transparent)}tfoot td{font-weight:900;background:color-mix(in srgb,#ffd83d 20%,var(--card))}
+.badge{display:inline-flex;padding:6px 9px;border-radius:999px;background:color-mix(in srgb,var(--green) 12%,transparent);color:var(--green);font-weight:800;font-size:12px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.select{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px}.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700}
+.footer{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:20px 6px 6px;color:var(--muted);font-size:12px}.brand{font-weight:900;color:var(--navy2)}body.dark .brand{color:#8fcbff}
+@media(max-width:1050px){.kpi{grid-column:span 6}.finance,.daily,.chart-card,.visual-card{grid-column:span 12}.finance{grid-template-columns:180px 1fr}.ring{width:165px;height:165px}.ring:after{width:120px;height:120px}.hero-grid{grid-template-columns:1fr}.hero-side{max-width:420px}.executive-strip{grid-template-columns:repeat(2,1fr)}.values-card{grid-template-columns:1fr}.values-grid{grid-template-columns:repeat(2,1fr)}.visual-shell{grid-template-columns:1fr}.visual-side-panel{grid-template-columns:1fr 1fr;grid-template-rows:none}}
+@media(max-width:680px){.shell{padding:12px}.hero{padding:22px 18px}.hero-grid{grid-template-columns:1fr}.hero-actions{justify-content:flex-start}.brand-lockup{width:100%}.executive-strip{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}.hero-mini{position:relative;right:auto;bottom:auto;width:100%;height:auto;margin-top:12px}.hero-mini img{aspect-ratio:16/9}.kpi{grid-column:span 12}.finance{grid-template-columns:1fr}.money{grid-template-columns:1fr}.daily .rows{grid-template-columns:1fr}.visual-side-panel{grid-template-columns:1fr}.visual-main,.visual-side,.auto-slider{min-height:220px}.visual-note{padding:18px}.footer{flex-direction:column;align-items:flex-start}.chart-area{height:230px}}
+@media print{body{background:#fff}.hero-actions,.controls{display:none}.shell{max-width:none;padding:0}.card,.hero{box-shadow:none;break-inside:avoid}.chart-card{break-inside:avoid}.table-card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="brand-lockup"><div class="brand-logo"><img data-photo="logo" alt="Logo PPN Ambon" /></div><div class="brand-title"><strong>PPN AMBON</strong><span>Kementerian Kelautan dan Perikanan</span></div></div>
+        <div class="eyebrow">Pelabuhan Perikanan Nusantara Ambon</div>
+        <h1>Dashboard Capaian <span class="accent">PNBP Pasca Produksi</span> 2026</h1>
+        <div class="sub">Ringkasan perkembangan penerimaan PNBP, aktivitas pendaratan kapal, dan volume produksi.</div>
+        <div class="date-pill" id="reportDate">📅 Data s.d. 26 September 2026</div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-actions">
+          <button class="btn" onclick="loadSheetData(true)">↻ Refresh Data</button>
+          <button class="btn" onclick="downloadCSV()">⬇ Ekspor CSV</button>
+          <button class="btn" onclick="window.print()">🖨 Cetak</button>
+          <button class="btn" onclick="toggleTheme()">◐ Tema</button>
+        </div>
+        <div class="hero-media" aria-label="Foto PPN Ambon">
+          <figure class="hero-photo">
+            <img data-photo="building" alt="Gedung PPN Ambon" />
+            <figcaption class="hero-tag">Gedung PPN Ambon</figcaption>
+          </figure>
+          <figure class="hero-mini">
+            <img data-photo="aerial" alt="Panorama kawasan PPN Ambon" />
+            <figcaption class="hero-tag">Kawasan Pelabuhan</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="executive-strip">
+    <div class="exec-chip"><span class="label">Persentase Capaian</span><span class="value" id="execPct">90,34%</span><span class="meta">Progress terhadap target tahunan</span></div>
+    <div class="exec-chip"><span class="label">Realisasi PNBP</span><span class="value" id="execRealization">Rp 4.516.861.542</span><span class="meta">Akumulasi Januari–September</span></div>
+    <div class="exec-chip"><span class="label">Sisa Menuju Target</span><span class="value" id="execRemaining">Rp 483.138.458</span><span class="meta">Selisih terhadap target Rp 5 miliar</span></div>
+    <div class="exec-chip"><span class="label">Update Terakhir</span><span class="value" id="execUpdated">26 September 2026</span><span class="meta">Tersinkron dari Google Sheets</span></div>
+  </section>
+
+  <main class="grid">
+    <section class="card kpi" style="--tone:#0d8be6"><div class="icon">🚢</div><div class="label">Kapal izin pusat SIPI aktif</div><div class="value"><span id="kpiActive">135</span> <span class="unit">unit</span></div><div class="mini">Pangkalan PPN Ambon</div></section>
+    <section class="card kpi" style="--tone:#11a274"><div class="icon">⚓</div><div class="label">Frekuensi pendaratan</div><div class="value"><span id="kpiLanding">223</span> <span class="unit">kali</span></div><div class="mini">Skema pasca produksi</div></section>
+    <section class="card kpi" style="--tone:#335fdd"><div class="icon">🐟</div><div class="label">Volume produksi didaratkan</div><div class="value"><span id="kpiVolume">3.539.483</span> <span class="unit">ton</span></div><div class="mini">Akumulasi Januari–September</div></section>
+    <section class="card kpi" style="--tone:#f59d19"><div class="icon">💳</div><div class="label">Kapal sedang / belum membayar</div><div class="value"><span id="kpiUnpaid">3</span> <span class="unit">unit</span></div><div class="mini" id="kpiUnpaidVolume">± 8 ton</div></section>
+
+    <section class="card finance card-watermark">
+      <div class="progress-wrap"><div class="ring" id="progressRing"><div class="ring-inner"><span>Persentase</span><b id="progressPct">90,34%</b><span>Capaian</span></div></div></div>
+      <div>
+        <h2>Capaian PNBP Pasca Produksi</h2>
+        <div style="color:var(--muted)">Target tahunan Rp5 miliar telah terealisasi 90,34%.</div>
+        <div class="money">
+          <div class="box"><small>Realisasi</small><strong id="realizedValue">Rp 4.516.861.542</strong></div>
+          <div class="box"><small>Target</small><strong id="targetValue">Rp 5.000.000.000</strong></div>
+          <div class="box"><small>Sisa Target</small><strong id="remainingValue">Rp 483.138.458</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card daily card-watermark">
+      <div class="eyebrow" id="dailyTitle">Realisasi 26 September 2026</div>
+      <div class="big" id="dailyAmount">Rp 1.965.750</div>
+      <div style="opacity:.86">Snapshot transaksi pada tanggal pelaporan.</div>
+      <div class="rows">
+        <div class="mini-box"><b id="dailyFreq">1 kali</b><span>Frekuensi pendaratan</span></div>
+        <div class="mini-box"><b id="dailyVolume">2.621 ton</b><span>Volume produksi</span></div>
+        <div class="mini-box"><b id="dailyAvg">Rp 1.965.750</b><span>Rata-rata / kapal</span></div>
+      </div>
+    </section>
+
+    <section class="card visual-card">
+      <div class="visual-shell">
+        <figure class="visual-main">
+          <div class="auto-slider" data-slider>
+            <img class="slide active" data-photo="aerial" alt="Panorama kawasan PPN Ambon" />
+            <img class="slide" data-photo="building" alt="Gedung PPN Ambon" />
+            <div class="visual-gradient"></div>
+            <div class="slider-dots"><button class="dot active" type="button" aria-label="Slide 1"></button><button class="dot" type="button" aria-label="Slide 2"></button></div>
+          </div>
+          <figcaption class="visual-caption"><div><span>Visual Pendukung Dashboard</span><b>Panorama Kawasan & Gedung PPN Ambon</b></div><span>Banner otomatis untuk memperkuat identitas visual dashboard</span></figcaption>
+        </figure>
+        <div class="visual-side-panel">
+          <figure class="visual-side">
+            <img data-photo="building" alt="Gedung PPN Ambon" />
+            <div class="visual-gradient"></div>
+            <figcaption class="visual-caption"><div><span>Identitas Instansi</span><b>Gedung Utama PPN Ambon</b></div></figcaption>
+          </figure>
+          <div class="visual-note">
+            <h3>Dashboard kini lebih visual</h3>
+            <p>Foto kawasan dan gedung PPN Ambon ditambahkan agar dashboard lebih menarik, lebih representatif, dan tetap fokus pada data utama yang tersinkron dari Google Sheets.</p>
+            <div class="pill-row">
+              <span class="pill">📊 Data live dari Google Sheets</span>
+              <span class="pill">🖼️ Visual identitas PPN Ambon</span>
+              <span class="pill">🖨️ Tetap siap cetak</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card chart-card">
+      <div class="chart-head"><div><h2 class="section-title">PNBP per Bulan</h2><div class="meta">Nilai penerimaan Januari–September 2026</div></div><span class="badge">Total Rp 4,52 M</span></div>
+      <div id="pnbpChart" class="chart-area"></div>
+    </section>
+
+    <section class="card chart-card">
+      <div class="chart-head"><div><h2 class="section-title">Aktivitas Pendaratan</h2><div class="meta">Frekuensi pendaratan per bulan</div></div><span class="badge">223 kali</span></div>
+      <div id="landingChart" class="chart-area"></div>
+    </section>
+
+    <section class="card chart-card">
+      <div class="chart-head"><div><h2 class="section-title">Volume Produksi</h2><div class="meta">Tonase produksi yang didaratkan</div></div><span class="badge">3.539.483 ton</span></div>
+      <div id="volumeChart" class="chart-area"></div>
+    </section>
+
+    <section class="card chart-card">
+      <div class="chart-head"><div><h2 class="section-title">Kontribusi PNBP Bulanan</h2><div class="meta">Persentase kontribusi terhadap realisasi total</div></div><span class="badge">Jan–Sep</span></div>
+      <div id="shareChart" class="chart-area"></div>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-top">
+        <div><h2 class="section-title">Rekapitulasi Capaian PNBP per Bulan</h2><div style="color:var(--muted);font-size:12px">Klik header tidak diperlukan — gunakan filter bulan untuk fokus data.</div></div>
+        <div class="controls">
+          <select id="monthFilter" class="select" onchange="renderTable()"><option value="all">Semua bulan</option></select>
+          <button class="ghost" onclick="resetFilter()">Reset</button>
+        </div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>No</th><th>Bulan</th><th>Frekuensi</th><th>Volume (ton)</th><th>Jumlah PNBP</th><th>Rata-rata / kapal</th><th>Kontribusi</th></tr></thead>
+        <tbody id="tbody"></tbody>
+        <tfoot id="tfoot"></tfoot>
+      </table></div>
+    </section>
+    <section class="card values-card">
+      <div class="values-art"><img data-photo="manise" alt="Core value MANISE" /></div>
+      <div class="values-copy">
+        <div class="eyebrow">Core Value PPN Ambon</div>
+        <h2 class="section-title">MANISE</h2>
+        <p>Nilai inti pelayanan PPN Ambon yang menjadi pedoman perilaku kerja dan kualitas layanan: mudah, akuntabel, nyaman, inovatif, santun, efektif, dan efisien.</p>
+        <div class="values-grid">
+          <div class="value-item"><b>Mudah</b><span>Layanan sederhana dan mudah diakses.</span></div>
+          <div class="value-item"><b>Akuntabel</b><span>Transparan, dapat dipertanggungjawabkan, dan tertib administrasi.</span></div>
+          <div class="value-item"><b>Nyaman</b><span>Memberi pengalaman layanan yang aman dan nyaman.</span></div>
+          <div class="value-item"><b>Inovatif</b><span>Terus berbenah dan mencari cara kerja yang lebih baik.</span></div>
+          <div class="value-item"><b>Santun</b><span>Mengedepankan sikap ramah dan menghormati pengguna layanan.</span></div>
+          <div class="value-item"><b>Efektif &amp; Efisien</b><span>Hasil kerja tepat sasaran dengan penggunaan sumber daya optimal.</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer"><div>Catatan: Data s.d. <b id="footerDate">26 September 2026</b> • <span id="dataStatus">sumber Google Sheets belum dimuat</span></div><div class="brand">PPN AMBON • Kementerian Kelautan dan Perikanan</div></footer>
+</div>
+<div id="tooltip" class="tooltip"></div>
+<script>
+const PHOTO_BUILDING='ppn-ambon-building.webp';
+const PHOTO_AERIAL='ppn-ambon-aerial.webp';
+const PHOTO_LOGO='kkp-logo.webp';
+const PHOTO_MANISE='manise-core.webp';
+const SHEET_ID='1t6bYdi1-6dunOzHxOE1KlgtZgvqoTzfppz9zqHRpBqY';
+const SHEET_NAME='Sheet1';
+const SHEET_URL=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&headers=1`;
+let data=[
+  {m:'Januari',s:'JAN',f:28,v:466286,p:603230073},
+  {m:'Februari',s:'FEB',f:26,v:234210,p:180732862},
+  {m:'Maret',s:'MAR',f:17,v:276158,p:506594183},
+  {m:'April',s:'APR',f:26,v:364664,p:394073890},
+  {m:'Mei',s:'MEI',f:36,v:660339,p:832424056},
+  {m:'Juni',s:'JUN',f:33,v:388274,p:741851285},
+  {m:'Juli',s:'JUL',f:15,v:338463,p:378549640},
+  {m:'Agustus',s:'AGU',f:29,v:764755,p:848762223},
+  {m:'September',s:'SEP',f:13,v:46334,p:30643330}
+];
+let config={reportDate:'26 September 2026',active:135,unpaid:3,unpaidVolume:8,target:5000000000,dailyPnbp:1965750,dailyFreq:1,dailyVolume:2621,source:'dashboard aplikasi e-PIT'};
+const fmt=n=>new Intl.NumberFormat('id-ID').format(Number(n)||0);
+const rup=n=>'Rp '+fmt(Math.round(Number(n)||0));
+const tip=document.getElementById('tooltip');
+const val=c=>c&&Object.prototype.hasOwnProperty.call(c,'v')?c.v:null;
+function totals(){return {p:data.reduce((a,b)=>a+(+b.p||0),0),f:data.reduce((a,b)=>a+(+b.f||0),0),v:data.reduce((a,b)=>a+(+b.v||0),0)}}
+function showTip(e,html){tip.innerHTML=html;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.opacity=1}
+function hideTip(){tip.style.opacity=0}
+function barChart(elId,key,format,color='var(--navy2)'){
+  const el=document.getElementById(elId),W=700,H=260,pad={l:56,r:16,t:18,b:40}; if(!data.length){el.innerHTML='';return}
+  const max=Math.max(...data.map(d=>+d[key]||0),1)*1.12,iw=W-pad.l-pad.r,ih=H-pad.t-pad.b,bw=iw/data.length*0.58,gap=iw/data.length;
+  let grid='';for(let i=0;i<=4;i++){const y=pad.t+ih*i/4,val=max*(1-i/4);grid+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="var(--line)"/><text class="axis-label" x="${pad.l-8}" y="${y+4}" text-anchor="end">${format(val,true)}</text>`}
+  let bars=data.map((d,i)=>{const h=(+d[key]||0)/max*ih,x=pad.l+i*gap+(gap-bw)/2,y=pad.t+ih-h;return `<rect class="bar" data-i="${i}" x="${x}" y="${y}" rx="7" width="${bw}" height="${h}" fill="${color}"/><text class="axis-label" x="${x+bw/2}" y="${H-14}" text-anchor="middle">${d.s}</text>`}).join('');
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${grid}${bars}</svg>`;
+  el.querySelectorAll('.bar').forEach(r=>r.addEventListener('mousemove',e=>{const d=data[+r.dataset.i];showTip(e,`<b>${d.m}</b><br>${format(d[key],false)}`)}));el.querySelectorAll('.bar').forEach(r=>r.addEventListener('mouseleave',hideTip));
+}
+function lineChart(elId,key,format){
+  const el=document.getElementById(elId),W=700,H=260,pad={l:50,r:20,t:20,b:40};if(!data.length){el.innerHTML='';return}
+  const max=Math.max(...data.map(d=>+d[key]||0),1)*1.15,iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
+  let grid='';for(let i=0;i<=4;i++){const y=pad.t+ih*i/4,val=max*(1-i/4);grid+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="var(--line)"/><text class="axis-label" x="${pad.l-8}" y="${y+4}" text-anchor="end">${Math.round(val)}</text>`}
+  const pts=data.map((d,i)=>[pad.l+(data.length===1?iw/2:i*iw/(data.length-1)),pad.t+ih-(+d[key]||0)/max*ih]);
+  const path=pts.map((p,i)=>(i?'L':'M')+p[0]+','+p[1]).join(' ');let body=`<path d="${path}" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  pts.forEach((p,i)=>{body+=`<circle class="line-dot" data-i="${i}" cx="${p[0]}" cy="${p[1]}" r="4.5" fill="var(--green)"/><text class="axis-label" x="${p[0]}" y="${H-14}" text-anchor="middle">${data[i].s}</text>`});
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${grid}${body}</svg>`;el.querySelectorAll('.line-dot').forEach(c=>c.addEventListener('mousemove',e=>{const d=data[+c.dataset.i];showTip(e,`<b>${d.m}</b><br>${format(d[key])}`)}));el.querySelectorAll('.line-dot').forEach(c=>c.addEventListener('mouseleave',hideTip));
+}
+function shareChart(){
+  const el=document.getElementById('shareChart'),W=700,H=260,pad={l:40,r:18,t:24,b:38},T=totals();if(!data.length||!T.p){el.innerHTML='';return}
+  const iw=W-pad.l-pad.r,ih=H-pad.t-pad.b,gap=iw/data.length,bw=gap*.6,maxPct=Math.max(...data.map(d=>d.p/T.p*100),1)*1.15;let body='';
+  data.forEach((d,i)=>{const pct=d.p/T.p*100,h=pct/maxPct*ih,x=pad.l+i*gap+(gap-bw)/2,y=pad.t+ih-h;body+=`<rect class="bar" data-i="${i}" x="${x}" y="${y}" width="${bw}" height="${h}" rx="7" fill="var(--orange)"/><text class="axis-label" x="${x+bw/2}" y="${Math.max(14,y-5)}" text-anchor="middle">${pct.toFixed(1)}%</text><text class="axis-label" x="${x+bw/2}" y="${H-12}" text-anchor="middle">${d.s}</text>`});
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="${pad.l}" y1="${pad.t+ih}" x2="${W-pad.r}" y2="${pad.t+ih}" stroke="var(--line)"/>${body}</svg>`;el.querySelectorAll('.bar').forEach(r=>r.addEventListener('mousemove',e=>{const d=data[+r.dataset.i];showTip(e,`<b>${d.m}</b><br>${(d.p/T.p*100).toFixed(2).replace('.',',')}% dari total`)}));el.querySelectorAll('.bar').forEach(r=>r.addEventListener('mouseleave',hideTip));
+}
+function renderCharts(){barChart('pnbpChart','p',(v,axis)=>axis?(v/1e6).toFixed(0)+' jt':rup(v),'var(--navy2)');lineChart('landingChart','f',v=>fmt(v)+' kali');barChart('volumeChart','v',(v,axis)=>axis?(v/1000).toFixed(0)+'k':fmt(v)+' ton','var(--blue)');shareChart()}
+function renderTable(){
+  const T=totals(),sel=document.getElementById('monthFilter'),choice=sel.value,rows=choice==='all'?data:data.filter((_,i)=>String(i)===choice),tb=document.getElementById('tbody');
+  tb.innerHTML=rows.map((d,i)=>`<tr><td>${choice==='all'?i+1:+choice+1}</td><td><b>${d.m}</b></td><td>${fmt(d.f)}</td><td>${fmt(d.v)}</td><td>${rup(d.p)}</td><td>${rup(d.f?d.p/d.f:0)}</td><td>${T.p?(d.p/T.p*100).toFixed(2).replace('.',','):'0,00'}%</td></tr>`).join('');
+  const sf=rows.reduce((a,b)=>a+(+b.f||0),0),sv=rows.reduce((a,b)=>a+(+b.v||0),0),sp=rows.reduce((a,b)=>a+(+b.p||0),0);document.getElementById('tfoot').innerHTML=`<tr><td colspan="2">TOTAL ${choice==='all'?'DATA AKTIF':rows[0]?.m.toUpperCase()||''}</td><td>${fmt(sf)}</td><td>${fmt(sv)}</td><td>${rup(sp)}</td><td>${rup(sf?sp/sf:0)}</td><td>${T.p?(sp/T.p*100).toFixed(2).replace('.',','):'0,00'}%</td></tr>`;
+}
+function rebuildMonthFilter(){const sel=document.getElementById('monthFilter'),old=sel.value;sel.innerHTML='<option value="all">Semua bulan</option>';data.forEach((d,i)=>sel.insertAdjacentHTML('beforeend',`<option value="${i}">${d.m}</option>`));if([...sel.options].some(o=>o.value===old))sel.value=old}
+function resetFilter(){document.getElementById('monthFilter').value='all';renderTable()}
+function updateKpis(){
+  const T=totals(),pct=config.target?T.p/config.target*100:0,rem=Math.max(0,(+config.target||0)-T.p);
+  document.getElementById('kpiActive').textContent=fmt(config.active);document.getElementById('kpiLanding').textContent=fmt(T.f);document.getElementById('kpiVolume').textContent=fmt(T.v);document.getElementById('kpiUnpaid').textContent=fmt(config.unpaid);document.getElementById('kpiUnpaidVolume').textContent=`± ${fmt(config.unpaidVolume)} ton`;
+  document.getElementById('progressPct').textContent=pct.toFixed(2).replace('.',',')+'%';document.getElementById('progressRing').style.background=`conic-gradient(var(--green) 0 ${Math.min(pct,100)}%,#e6edf2 ${Math.min(pct,100)}% 100%)`;document.getElementById('realizedValue').textContent=rup(T.p);document.getElementById('targetValue').textContent=rup(config.target);document.getElementById('remainingValue').textContent=rup(rem);
+  document.getElementById('reportDate').textContent='📅 Data s.d. '+config.reportDate;document.getElementById('footerDate').textContent=config.reportDate;document.getElementById('dailyTitle').textContent='Realisasi '+config.reportDate;document.getElementById('dailyAmount').textContent=rup(config.dailyPnbp);document.getElementById('dailyFreq').textContent=fmt(config.dailyFreq)+' kali';document.getElementById('dailyVolume').textContent=fmt(config.dailyVolume)+' ton';document.getElementById('dailyAvg').textContent=rup(config.dailyFreq?config.dailyPnbp/config.dailyFreq:0);document.getElementById('execPct').textContent=pct.toFixed(2).replace('.',',')+'%';document.getElementById('execRealization').textContent=rup(T.p);document.getElementById('execRemaining').textContent=rup(rem);document.getElementById('execUpdated').textContent=config.reportDate;
+  document.querySelector('#pnbpChart').closest('.chart-card').querySelector('.badge').textContent='Total '+rup(T.p);document.querySelector('#landingChart').closest('.chart-card').querySelector('.badge').textContent=fmt(T.f)+' kali';document.querySelector('#volumeChart').closest('.chart-card').querySelector('.badge').textContent=fmt(T.v)+' ton';
+}
+function parseGviz(txt){const a=txt.indexOf('{'),b=txt.lastIndexOf('}');if(a<0||b<0)throw new Error('Respons Google Sheets tidak valid');return JSON.parse(txt.slice(a,b+1))}
+async function loadSheetData(manual=false){
+  const status=document.getElementById('dataStatus');status.textContent='memuat Google Sheets…';
+  try{
+    const res=await fetch(SHEET_URL,{cache:'no-store'});if(!res.ok)throw new Error('HTTP '+res.status);const json=parseGviz(await res.text());const rows=json.table?.rows||[];
+    const next=[],cfg={};for(const r of rows){const c=r.c||[];const month=val(c[0]),code=val(c[1]),freq=val(c[2]),vol=val(c[3]),pnbp=val(c[4]);if(month&&code&&freq!==null&&freq!==''&&pnbp!==null&&pnbp!=='')next.push({m:String(month),s:String(code),f:Number(freq)||0,v:Number(vol)||0,p:Number(pnbp)||0});const k=val(c[7]),v=val(c[8]);if(k)cfg[String(k)]=v}
+    if(!next.length)throw new Error('Tabel bulanan belum terisi');data=next;config={reportDate:cfg['Tanggal Update']||config.reportDate,active:Number(cfg['Kapal Aktif']??config.active),unpaid:Number(cfg['Kapal Belum Membayar']??config.unpaid),unpaidVolume:Number(cfg['Volume Belum Membayar (ton)']??config.unpaidVolume),target:Number(cfg['Target PNBP (Rp)']??config.target),dailyPnbp:Number(cfg['Realisasi Harian (Rp)']??config.dailyPnbp),dailyFreq:Number(cfg['Frekuensi Harian']??config.dailyFreq),dailyVolume:Number(cfg['Volume Harian (ton)']??config.dailyVolume),source:String(cfg['Sumber Kapal Aktif']||config.source)};
+    rebuildMonthFilter();updateKpis();renderCharts();renderTable();status.textContent='tersinkron dari Google Sheets • '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});if(manual)status.textContent+=' ✓';
+  }catch(err){console.error(err);updateKpis();renderCharts();renderTable();status.textContent='gagal sinkron — memakai data cadangan. Pastikan Sheet dapat diakses sebagai Viewer via link.'}
+}
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('pnbp-theme',document.body.classList.contains('dark')?'dark':'light')}
+function downloadCSV(){const T=totals(),header=['No','Bulan','Frekuensi Pendaratan','Volume Produksi (ton)','Jumlah PNBP','Rata-rata per Kapal'];const lines=[header,...data.map((d,i)=>[i+1,d.m,d.f,d.v,d.p,Math.round(d.f?d.p/d.f:0)]),['TOTAL','',T.f,T.v,T.p,Math.round(T.f?T.p/T.f:0)]];const csv='\ufeff'+lines.map(r=>r.join(';')).join('\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='rekap_pnbp_ppn_ambon.csv';a.click();URL.revokeObjectURL(a.href)}
+function hydratePhotos(){document.querySelectorAll('[data-photo="building"]').forEach(img=>img.src=PHOTO_BUILDING);document.querySelectorAll('[data-photo="aerial"]').forEach(img=>img.src=PHOTO_AERIAL);document.querySelectorAll('[data-photo="logo"]').forEach(img=>img.src=PHOTO_LOGO);document.querySelectorAll('[data-photo="manise"]').forEach(img=>img.src=PHOTO_MANISE)}
+function applyWatermarks(){const finance=document.querySelector('.finance.card-watermark');if(finance)finance.style.setProperty('--watermark',`url(${PHOTO_AERIAL})`);const daily=document.querySelector('.daily.card-watermark');if(daily)daily.style.setProperty('--watermark',`url(${PHOTO_BUILDING})`)}
+function initSliders(){document.querySelectorAll('[data-slider]').forEach(slider=>{const slides=[...slider.querySelectorAll('.slide')],dots=[...slider.querySelectorAll('.dot')];if(slides.length<2)return;let idx=0;const show=n=>{idx=n;slides.forEach((s,i)=>s.classList.toggle('active',i===idx));dots.forEach((d,i)=>d.classList.toggle('active',i===idx))};dots.forEach((dot,i)=>dot.addEventListener('click',()=>show(i)));setInterval(()=>show((idx+1)%slides.length),4500);});}
+(function init(){if(localStorage.getItem('pnbp-theme')==='dark')document.body.classList.add('dark');hydratePhotos();applyWatermarks();initSliders();rebuildMonthFilter();updateKpis();renderCharts();renderTable();loadSheetData(false)})();
+</script>
+</body>
+</html>
