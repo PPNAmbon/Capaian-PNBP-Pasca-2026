@@ -60,7 +60,7 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
         <div class="eyebrow">Pelabuhan Perikanan Nusantara Ambon</div>
         <h1>Dashboard Capaian <span class="accent">PNBP Pasca Produksi</span> 2026</h1>
         <div class="sub">Ringkasan perkembangan penerimaan PNBP, aktivitas pendaratan kapal, dan volume produksi.</div>
-        <div class="date-pill" id="reportDate">📅 Data s.d. 26 September 2026</div>
+        <div class="date-pill" id="reportDate">📅 Data s.d. 29 September 2026</div>
       </div>
       <div class="hero-side">
         <div class="hero-actions">
@@ -87,7 +87,7 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
     <div class="exec-chip"><span class="label">Persentase Capaian</span><span class="value" id="execPct">90,34%</span><span class="meta">Progress terhadap target tahunan</span></div>
     <div class="exec-chip"><span class="label">Realisasi PNBP</span><span class="value" id="execRealization">Rp 4.516.861.542</span><span class="meta">Akumulasi Januari–September</span></div>
     <div class="exec-chip"><span class="label">Sisa Menuju Target</span><span class="value" id="execRemaining">Rp 483.138.458</span><span class="meta">Selisih terhadap target Rp 5 miliar</span></div>
-    <div class="exec-chip"><span class="label">Update Terakhir</span><span class="value" id="execUpdated">26 September 2026</span><span class="meta">Tersinkron dari Google Sheets</span></div>
+    <div class="exec-chip"><span class="label">Update Terakhir</span><span class="value" id="execUpdated">29 September 2026</span><span class="meta">Tersinkron dari Google Sheets</span></div>
   </section>
 
   <main class="grid">
@@ -110,13 +110,13 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
     </section>
 
     <section class="card daily card-watermark">
-      <div class="eyebrow" id="dailyTitle">Realisasi 26 September 2026</div>
-      <div class="big" id="dailyAmount">Rp 1.965.750</div>
+      <div class="eyebrow" id="dailyTitle">Realisasi 29 September 2026</div>
+      <div class="big" id="dailyAmount">Rp 2.043.100</div>
       <div style="opacity:.86">Snapshot transaksi pada tanggal pelaporan.</div>
       <div class="rows">
         <div class="mini-box"><b id="dailyFreq">1 kali</b><span>Frekuensi pendaratan</span></div>
-        <div class="mini-box"><b id="dailyVolume">2.621 ton</b><span>Volume produksi</span></div>
-        <div class="mini-box"><b id="dailyAvg">Rp 1.965.750</b><span>Rata-rata / kapal</span></div>
+        <div class="mini-box"><b id="dailyVolume">4.039 ton</b><span>Volume produksi</span></div>
+        <div class="mini-box"><b id="dailyAvg">Rp 2.043.100</b><span>Rata-rata / kapal</span></div>
       </div>
     </section>
 
@@ -203,7 +203,7 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
 
   </main>
 
-  <footer class="footer"><div>Catatan: Data s.d. <b id="footerDate">26 September 2026</b> • <span id="dataStatus">sumber Google Sheets belum dimuat</span></div><div class="brand">PPN AMBON • Kementerian Kelautan dan Perikanan</div></footer>
+  <footer class="footer"><div>Catatan: Data s.d. <b id="footerDate">29 September 2026</b> • <span id="dataStatus">sumber Google Sheets belum dimuat</span> • <span id="buildId">build 2026-10-01-config-v3</span></div><div class="brand">PPN AMBON • Kementerian Kelautan dan Perikanan</div></footer>
 </div>
 <div id="tooltip" class="tooltip"></div>
 <script>
@@ -215,6 +215,10 @@ const SHEET_ID='1t6bYdi1-6dunOzHxOE1KlgtZgvqoTzfppz9zqHRpBqY';
 const SHEET_NAME='Sheet1';
 const SHEET_BASE=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(SHEET_NAME)}&headers=1`;
 const SHEET_URL=`${SHEET_BASE}&tqx=out:json`;
+const CONFIG_QUERY=encodeURIComponent('select H,I where H is not null');
+const CONFIG_BASE=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(SHEET_NAME)}&headers=1&tq=${CONFIG_QUERY}`;
+const CONFIG_URL=`${CONFIG_BASE}&tqx=out:json`;
+const BUILD_ID='2026-10-01-config-v3';
 let data=[
   {m:'Januari',s:'JAN',f:28,v:466286,p:603230073},
   {m:'Februari',s:'FEB',f:26,v:234210,p:180732862},
@@ -224,13 +228,14 @@ let data=[
   {m:'Juni',s:'JUN',f:33,v:388274,p:741851285},
   {m:'Juli',s:'JUL',f:15,v:338463,p:378549640},
   {m:'Agustus',s:'AGU',f:29,v:764755,p:848762223},
-  {m:'September',s:'SEP',f:13,v:46334,p:30643330}
+  {m:'September',s:'SEP',f:14,v:50373,p:32686430}
 ];
-let config={reportDate:'26 September 2026',active:135,unpaid:3,unpaidVolume:8,target:5000000000,dailyPnbp:1965750,dailyFreq:1,dailyVolume:2621,source:'dashboard aplikasi e-PIT'};
+let config={reportDate:'29 September 2026',active:135,unpaid:4,unpaidVolume:10,target:5000000000,dailyPnbp:2043100,dailyFreq:1,dailyVolume:4039,source:'dashboard aplikasi e-PIT'};
 const fmt=n=>new Intl.NumberFormat('id-ID').format(Number(n)||0);
 const rup=n=>'Rp '+fmt(Math.round(Number(n)||0));
 const tip=document.getElementById('tooltip');
 const val=c=>c&&Object.prototype.hasOwnProperty.call(c,'v')?c.v:null;
+const displayVal=c=>{if(!c)return null;if(Object.prototype.hasOwnProperty.call(c,'f')&&c.f!==null&&c.f!=='')return c.f;if(Object.prototype.hasOwnProperty.call(c,'v'))return c.v;return null};
 function totals(){return {p:data.reduce((a,b)=>a+(+b.p||0),0),f:data.reduce((a,b)=>a+(+b.f||0),0),v:data.reduce((a,b)=>a+(+b.v||0),0)}}
 function showTip(e,html){tip.innerHTML=html;tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.opacity=1}
 function hideTip(){tip.style.opacity=0}
@@ -273,7 +278,7 @@ function updateKpis(){
   document.querySelector('#pnbpChart').closest('.chart-card').querySelector('.badge').textContent='Total '+rup(T.p);document.querySelector('#landingChart').closest('.chart-card').querySelector('.badge').textContent=fmt(T.f)+' kali';document.querySelector('#volumeChart').closest('.chart-card').querySelector('.badge').textContent=fmt(T.v)+' ton';
 }
 function parseGviz(txt){const a=txt.indexOf('{'),b=txt.lastIndexOf('}');if(a<0||b<0)throw new Error('Respons Google Sheets tidak valid');return JSON.parse(txt.slice(a,b+1))}
-function fetchSheetJsonp(){
+function fetchSheetJsonp(base){
   return new Promise((resolve,reject)=>{
     const cb='__ppnSheetCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
     const script=document.createElement('script');
@@ -282,15 +287,15 @@ function fetchSheetJsonp(){
     window[cb]=json=>{cleanup();resolve(json)};
     script.onerror=()=>{cleanup();reject(new Error('JSONP Google Sheets gagal dimuat'))};
     const tqx=encodeURIComponent('out:json;responseHandler:'+cb);
-    script.src=`${SHEET_BASE}&tqx=${tqx}&_=${Date.now()}`;
+    script.src=`${base}&tqx=${tqx}&_=${Date.now()}`;
     document.head.appendChild(script);
     const timer=setTimeout(()=>{cleanup();reject(new Error('Timeout Google Sheets'))},12000);
   });
 }
-async function getSheetJson(){
-  try{return await fetchSheetJsonp()}
+async function getSheetJson(base,url){
+  try{return await fetchSheetJsonp(base)}
   catch(jsonpErr){
-    const res=await fetch(`${SHEET_URL}&_=${Date.now()}`,{cache:'no-store'});
+    const res=await fetch(`${url}&_=${Date.now()}`,{cache:'no-store'});
     if(!res.ok)throw new Error('HTTP '+res.status);
     return parseGviz(await res.text());
   }
@@ -298,18 +303,20 @@ async function getSheetJson(){
 async function loadSheetData(manual=false){
   const status=document.getElementById('dataStatus');status.textContent='memuat Google Sheets…';
   try{
-    const json=await getSheetJson();const rows=json.table?.rows||[];
-    const next=[],cfg={};for(const r of rows){const c=r.c||[];const month=val(c[0]),code=val(c[1]),freq=val(c[2]),vol=val(c[3]),pnbp=val(c[4]);if(month&&code&&freq!==null&&freq!==''&&pnbp!==null&&pnbp!=='')next.push({m:String(month),s:String(code),f:Number(freq)||0,v:Number(vol)||0,p:Number(pnbp)||0});const k=val(c[7]),v=val(c[8]);if(k)cfg[String(k)]=v}
-    if(!next.length)throw new Error('Tabel bulanan belum terisi');data=next;config={reportDate:cfg['Tanggal Update']||config.reportDate,active:Number(cfg['Kapal Aktif']??config.active),unpaid:Number(cfg['Kapal Belum Membayar']??config.unpaid),unpaidVolume:Number(cfg['Volume Belum Membayar (ton)']??config.unpaidVolume),target:Number(cfg['Target PNBP (Rp)']??config.target),dailyPnbp:Number(cfg['Realisasi Harian (Rp)']??config.dailyPnbp),dailyFreq:Number(cfg['Frekuensi Harian']??config.dailyFreq),dailyVolume:Number(cfg['Volume Harian (ton)']??config.dailyVolume),source:String(cfg['Sumber Kapal Aktif']||config.source)};
-    rebuildMonthFilter();updateKpis();renderCharts();renderTable();status.textContent='tersinkron dari Google Sheets • '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});if(manual)status.textContent+=' ✓';
-  }catch(err){console.error(err);updateKpis();renderCharts();renderTable();status.textContent='gagal sinkron — memakai data cadangan. Coba klik Refresh Data atau muat ulang halaman.'}
+    const [json,cfgJson]=await Promise.all([getSheetJson(SHEET_BASE,SHEET_URL),getSheetJson(CONFIG_BASE,CONFIG_URL)]);const rows=json.table?.rows||[];
+    const next=[];for(const r of rows){const c=r.c||[];const month=displayVal(c[0]),code=displayVal(c[1]),freq=val(c[2]),vol=val(c[3]),pnbp=val(c[4]);if(month&&code&&freq!==null&&freq!==''&&pnbp!==null&&pnbp!=='')next.push({m:String(month),s:String(code),f:Number(freq)||0,v:Number(vol)||0,p:Number(pnbp)||0})}
+    const cfg={};for(const r of (cfgJson.table?.rows||[])){const c=r.c||[];const k=displayVal(c[0]),v=displayVal(c[1]);if(k){const key=String(k).replace(/\u00a0/g,' ').trim();if(key!=='Parameter')cfg[key]=v}}
+    const num=v=>Number(String(v??'').replace(/[^0-9.-]/g,''))||0;
+    if(!next.length)throw new Error('Tabel bulanan belum terisi');data=next;config={reportDate:String(cfg['Tanggal Update']||config.reportDate),active:num(cfg['Kapal Aktif']??config.active),unpaid:num(cfg['Kapal Belum Membayar']??config.unpaid),unpaidVolume:num(cfg['Volume Belum Membayar (ton)']??config.unpaidVolume),target:num(cfg['Target PNBP (Rp)']??config.target),dailyPnbp:num(cfg['Realisasi Harian (Rp)']??config.dailyPnbp),dailyFreq:num(cfg['Frekuensi Harian']??config.dailyFreq),dailyVolume:num(cfg['Volume Harian (ton)']??config.dailyVolume),source:String(cfg['Sumber Kapal Aktif']||config.source)};
+    rebuildMonthFilter();updateKpis();renderCharts();renderTable();status.textContent='tersinkron • '+config.reportDate+' • '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});if(manual)status.textContent+=' ✓';
+  }catch(err){console.error(err);updateKpis();renderCharts();renderTable();status.textContent='gagal sinkron — memakai data cadangan 29 September 2026. Build '+BUILD_ID}
 }
 function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('pnbp-theme',document.body.classList.contains('dark')?'dark':'light')}
 function downloadCSV(){const T=totals(),header=['No','Bulan','Frekuensi Pendaratan','Volume Produksi (ton)','Jumlah PNBP','Rata-rata per Kapal'];const lines=[header,...data.map((d,i)=>[i+1,d.m,d.f,d.v,d.p,Math.round(d.f?d.p/d.f:0)]),['TOTAL','',T.f,T.v,T.p,Math.round(T.f?T.p/T.f:0)]];const csv='\ufeff'+lines.map(r=>r.join(';')).join('\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='rekap_pnbp_ppn_ambon.csv';a.click();URL.revokeObjectURL(a.href)}
 function hydratePhotos(){document.querySelectorAll('[data-photo="building"]').forEach(img=>img.src=PHOTO_BUILDING);document.querySelectorAll('[data-photo="aerial"]').forEach(img=>img.src=PHOTO_AERIAL);document.querySelectorAll('[data-photo="logo"]').forEach(img=>img.src=PHOTO_LOGO);document.querySelectorAll('[data-photo="manise"]').forEach(img=>img.src=PHOTO_MANISE)}
 function applyWatermarks(){const finance=document.querySelector('.finance.card-watermark');if(finance)finance.style.setProperty('--watermark',`url(${PHOTO_AERIAL})`);const daily=document.querySelector('.daily.card-watermark');if(daily)daily.style.setProperty('--watermark',`url(${PHOTO_BUILDING})`)}
 function initSliders(){document.querySelectorAll('[data-slider]').forEach(slider=>{const slides=[...slider.querySelectorAll('.slide')],dots=[...slider.querySelectorAll('.dot')];if(slides.length<2)return;let idx=0;const show=n=>{idx=n;slides.forEach((s,i)=>s.classList.toggle('active',i===idx));dots.forEach((d,i)=>d.classList.toggle('active',i===idx))};dots.forEach((dot,i)=>dot.addEventListener('click',()=>show(i)));setInterval(()=>show((idx+1)%slides.length),4500);});}
-(function init(){if(localStorage.getItem('pnbp-theme')==='dark')document.body.classList.add('dark');hydratePhotos();applyWatermarks();initSliders();rebuildMonthFilter();updateKpis();renderCharts();renderTable();loadSheetData(false);setInterval(()=>loadSheetData(false),300000)})();
+(function init(){const b=document.getElementById('buildId');if(b)b.textContent='build '+BUILD_ID;if(localStorage.getItem('pnbp-theme')==='dark')document.body.classList.add('dark');hydratePhotos();applyWatermarks();initSliders();rebuildMonthFilter();updateKpis();renderCharts();renderTable();loadSheetData(false);setInterval(()=>loadSheetData(false),300000)})();
 </script>
 </body>
 </html>
