@@ -77,7 +77,7 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
         <div class="eyebrow">Pelabuhan Perikanan Nusantara Ambon</div>
         <h1>Dashboard Capaian <span class="accent">PNBP Pasca Produksi</span> 2026</h1>
         <div class="sub">Ringkasan perkembangan penerimaan PNBP, aktivitas pendaratan kapal, dan volume produksi.</div>
-        <div class="date-pill" id="reportDate">📅 Data s.d. 29 September 2026</div>
+        <div class="date-pill" id="reportDate">📅 Data s.d. 13 Oktober 2026</div>
       </div>
       <div class="hero-side">
         <div class="hero-actions">
@@ -100,7 +100,7 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
     <div class="exec-chip"><span class="label">Persentase Capaian</span><span class="value" id="execPct">90,83%</span><span class="meta">Progress terhadap target tahunan</span></div>
     <div class="exec-chip"><span class="label">Realisasi PNBP</span><span class="value" id="execRealization">Rp 4.541.447.117</span><span class="meta">Akumulasi Januari–September</span></div>
     <div class="exec-chip"><span class="label">Sisa Menuju Target</span><span class="value" id="execRemaining">Rp 458.552.883</span><span class="meta">Selisih terhadap target Rp 5 miliar</span></div>
-    <div class="exec-chip"><span class="label">Update Terakhir</span><span class="value" id="execUpdated">07 Oktober 2026</span><span class="meta">Tersinkron dari Google Sheets</span></div>
+    <div class="exec-chip"><span class="label">Update Terakhir</span><span class="value" id="execUpdated">13 Oktober 2026</span><span class="meta">Tersinkron dari Google Sheets</span></div>
   </section>
 
   <main class="grid">
@@ -217,7 +217,7 @@ body.dark .daily.card-watermark:after{background:linear-gradient(135deg,rgba(3,2
 
   </main>
 
-  <footer class="footer"><div>Catatan: Data s.d. <b id="footerDate">07 Oktober 2026</b> • <span id="dataStatus">sumber Google Sheets belum dimuat</span> • <span id="buildId">build 2026-10-03-live-sync-v11</span></div><div class="brand">PPN AMBON • Kementerian Kelautan dan Perikanan</div></footer>
+  <footer class="footer"><div>Catatan: Data s.d. <b id="footerDate">13 Oktober 2026</b> • <span id="dataStatus">sumber Google Sheets belum dimuat</span> • <span id="buildId">build 2026-10-03-live-sync-v11</span></div><div class="brand">PPN AMBON • Kementerian Kelautan dan Perikanan</div></footer>
 </div>
 <div id="tooltip" class="tooltip"></div>
 <script>
@@ -230,7 +230,7 @@ const SHEET_NAME='Sheet1';
 const SHEET_BASE=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(SHEET_NAME)}&range=A1:I30&headers=1`;
 const SHEET_URL=`${SHEET_BASE}&tqx=out:json`;
 const SHEET_BASE_GID=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=0&range=A1:I30&headers=1`;
-const BUILD_ID='2026-10-07-live-sync-v12';
+const BUILD_ID='2026-10-13-live-sync-v13';
 let data=[
   {m:'Januari',s:'JAN',f:28,v:466286,p:603230073},
   {m:'Februari',s:'FEB',f:26,v:234210,p:180732862},
@@ -240,9 +240,10 @@ let data=[
   {m:'Juni',s:'JUN',f:33,v:388274,p:741851285},
   {m:'Juli',s:'JUL',f:15,v:338463,p:378549640},
   {m:'Agustus',s:'AGU',f:29,v:764755,p:848762223},
-  {m:'September',s:'SEP',f:20,v:81786,p:55228905}
+  {m:'September',s:'SEP',f:15,v:52957,p:34624430},
+  {m:'Oktober',s:'OKT',f:10,v:142876,p:166230270}
 ];
-let config={reportDate:'07 Oktober 2026',active:135,unpaid:3,unpaidVolume:17,target:5000000000,dailyPnbp:0,dailyFreq:1,dailyVolume:0,source:'dashboard aplikasi e-PIT'};
+let config={reportDate:'13 Oktober 2026',active:135,unpaid:0,unpaidVolume:0,target:5000000000,dailyPnbp:0,dailyFreq:1,dailyVolume:0,source:'dashboard aplikasi e-PIT'};
 const fmt=n=>new Intl.NumberFormat('id-ID').format(Number(n)||0);
 const rup=n=>'Rp '+fmt(Math.round(Number(n)||0));
 const tip=document.getElementById('tooltip');
@@ -306,14 +307,24 @@ function fetchSheetJsonp(base){
 }
 async function getSheetJson(){
   const errors=[];
-  for(const base of [SHEET_BASE,SHEET_BASE_GID]){
-    try{return await fetchSheetJsonp(base)}catch(e){errors.push(e.message)}
+  const stamp=Date.now();
+  const directUrls=[
+    `${SHEET_BASE}&tqx=${encodeURIComponent('out:json;reqId:'+stamp)}&tq=${encodeURIComponent('select *')}&cb=${stamp}`,
+    `${SHEET_BASE_GID}&tqx=${encodeURIComponent('out:json;reqId:'+stamp)}&tq=${encodeURIComponent('select *')}&cb=${stamp}`
+  ];
+  for(const url of directUrls){
+    try{
+      const res=await fetch(url,{cache:'no-store',mode:'cors',redirect:'follow',headers:{'Cache-Control':'no-cache','Pragma':'no-cache'}});
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      const txt=await res.text();
+      const parsed=parseGviz(txt);
+      if(parsed?.table?.rows?.length)return parsed;
+      throw new Error('Respons kosong');
+    }catch(e){errors.push('fetch: '+e.message)}
   }
-  try{
-    const res=await fetch(`${SHEET_URL}&tq=${encodeURIComponent('select *')}&_=${Date.now()}`,{cache:'no-store',mode:'cors',redirect:'follow'});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    return parseGviz(await res.text());
-  }catch(e){errors.push(e.message)}
+  for(const base of [SHEET_BASE,SHEET_BASE_GID]){
+    try{return await fetchSheetJsonp(base)}catch(e){errors.push('jsonp: '+e.message)}
+  }
   throw new Error(errors.join(' | '));
 }
 function rawVal(c){return c&&Object.prototype.hasOwnProperty.call(c,'v')?c.v:null}
